@@ -13,19 +13,19 @@ class Repository @Inject constructor(private val apiService: PostService) {
         if(response.isSuccessful){
             emit(response.body()!!)
         }
-    }.flowOn(Dispatchers.IO)
+    }.flowOn(Dispatchers.Default)
 
     fun getPostQuery(userId : Int) : Flow<Posts>  = flow{
         val response = apiService.getPosts(userId).execute()
         if(response.isSuccessful){
             emit(response.body()!!)
         }
-    }.flowOn(Dispatchers.IO)
+    }.flowOn(Dispatchers.Default)
 
     fun getPostQueryMap(queryMap: Map<String, String>) : Flow<Posts>  = flow{
         val response = apiService.getPosts(queryMap).execute()
         if(response.isSuccessful){
             emit(response.body()!!)
         }
-    }.flowOn(Dispatchers.IO)
+    }.flowOn(Dispatchers.Default)
 }
